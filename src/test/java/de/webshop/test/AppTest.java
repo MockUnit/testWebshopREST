@@ -1,4 +1,4 @@
-package foo;
+package de.webshop.test;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
