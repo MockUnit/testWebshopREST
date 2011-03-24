@@ -3,7 +3,7 @@ package de.webshop.test;
 
 import static de.webshop.util.Constants.ARTIKEL_URL;
 import static de.webshop.util.Constants.BASE_URL;
-import static de.webshop.util.Constants.KUNDEN_URL;
+import static de.webshop.util.Constants.BENUTZER_URL;
 import static javax.ws.rs.core.Response.Status.CREATED;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
