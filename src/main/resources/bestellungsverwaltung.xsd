@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://webshop.de/bestellungsverwaltung" xmlns:tns="http://webshop.de/bestellungsverwaltung" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="bestellposition" type="tns:bestellposition"/>
+
+  <xs:element name="bestellung" type="tns:bestellung"/>
+
+  <xs:element name="bestellungList" type="tns:bestellungList"/>
+
+  <xs:complexType name="bestellungList">
+    <xs:sequence>
+      <xs:element ref="tns:bestellung" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bestellung">
+    <xs:sequence>
+      <xs:element name="benutzer" type="xs:string" minOccurs="0"/>
+      <xs:element name="bestellpositionen" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="bestellposition" type="tns:bestellposition" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="bestellstatus" type="tns:bestellstatus" minOccurs="0"/>
+      <xs:element name="zahlungsart" type="tns:zahlungsart" minOccurs="0"/>
+      <xs:element name="gesamtpreis" type="xs:double"/>
+      <xs:element name="erstellungsdatum" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="aenderungsdatum" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="bestellposition">
+    <xs:sequence>
+      <xs:element name="lagerArtikel" type="xs:string" minOccurs="0"/>
+      <xs:element name="menge" type="xs:int"/>
+      <xs:element name="erstellungsdatum" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="aenderungsdatum" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="bestellstatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WARENKORB"/>
+      <xs:enumeration value="BESTELLT"/>
+      <xs:enumeration value="IN_BERARBEITUNG"/>
+      <xs:enumeration value="VERSENDET"/>
+      <xs:enumeration value="STORNIERT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="zahlungsart">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BAR"/>
+      <xs:enumeration value="VORKASSE"/>
+      <xs:enumeration value="NACHNAHME"/>
+      <xs:enumeration value="UEBERWEISUNG"/>
+      <xs:enumeration value="RECHNUNG"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

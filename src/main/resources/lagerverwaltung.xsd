@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://webshop.de/lagerverwaltung" xmlns:tns="http://webshop.de/lagerverwaltung" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="lager" type="tns:lager"/>
+
+  <xs:element name="lagerList" type="tns:lagerList"/>
+
+  <xs:complexType name="lagerList">
+    <xs:sequence>
+      <xs:element ref="tns:lager" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lager">
+    <xs:sequence>
+      <xs:element name="idlager" type="xs:long" minOccurs="0"/>
+      <xs:element name="artikelUri" type="xs:string" minOccurs="0"/>
+      <xs:element name="groesse" type="xs:string" minOccurs="0"/>
+      <xs:element name="farbe" type="tns:farbe" minOccurs="0"/>
+      <xs:element name="bestandIst" type="xs:int" minOccurs="0"/>
+      <xs:element name="bestandMin" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="farbe">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WEISS"/>
+      <xs:enumeration value="BLAU"/>
+      <xs:enumeration value="ROT"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

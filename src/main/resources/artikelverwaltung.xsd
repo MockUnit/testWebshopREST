@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://webshop.de/artikelverwaltung" xmlns:tns="http://webshop.de/artikelverwaltung" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="artikel" type="tns:artikel"/>
+
+  <xs:element name="kategorie" type="tns:kategorie"/>
+
+  <xs:element name="kategorieHasArtikel" type="tns:kategorieHasArtikel"/>
+
+  <xs:element name="produktbewertung" type="tns:produktbewertung"/>
+
+  <xs:complexType name="artikel">
+    <xs:sequence>
+      <xs:element name="artikelvarianten" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="artikelvariante" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="kategorien" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="kategorie" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="produktbewertungen" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="produktbewertung" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="bezeichnung" type="xs:string" minOccurs="0"/>
+      <xs:element name="preis" type="xs:double" minOccurs="0"/>
+      <xs:element name="imsortiment" type="xs:boolean"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="kategorie">
+    <xs:sequence>
+      <xs:element name="subkategorien" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="subkategorie" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="mainKategorie" type="tns:kategorie" minOccurs="0"/>
+      <xs:element name="bezeichnung" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="kategorieHasArtikel">
+    <xs:sequence>
+      <xs:element name="artikel" type="tns:artikel" minOccurs="0"/>
+      <xs:element name="kategorie" type="tns:kategorie" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="produktbewertung">
+    <xs:sequence>
+      <xs:element name="artikel" type="xs:string" minOccurs="0"/>
+      <xs:element name="benutzer" type="xs:string" minOccurs="0"/>
+      <xs:element name="kommentar" type="xs:string" minOccurs="0"/>
+      <xs:element name="erstellungsdatum" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+    <xs:attribute name="bewertung" type="xs:int" use="required"/>
+  </xs:complexType>
+</xs:schema>
+
