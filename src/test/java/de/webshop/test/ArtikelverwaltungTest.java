@@ -1,20 +1,16 @@
 package de.webshop.test;
 
 
-import static de.webshop.util.Constants.ARTIKEL_URL;
-import static de.webshop.util.Constants.BASE_URL;
-import static de.webshop.util.Constants.BENUTZER_URL;
-import static javax.ws.rs.core.Response.Status.CREATED;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.IOException;
+import static de.webshop.util.Constants.BASE_URL;
+
 import java.util.List;
 
-import javax.ws.rs.core.Response.Status;
-import javax.xml.bind.JAXBException;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+import static org.hamcrest.CoreMatchers.is;
+
+
 
 import org.apache.commons.httpclient.HttpClient;
 import org.jboss.arquillian.api.Deployment;
@@ -22,11 +18,12 @@ import org.jboss.arquillian.api.Run;
 import org.jboss.arquillian.api.RunModeType;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.resteasy.client.ProxyFactory;
-import org.jboss.resteasy.client.core.BaseClientResponse;
+
 import org.jboss.resteasy.client.core.executors.ApacheHttpClientExecutor;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,8 +38,10 @@ import de.swe1.proxy.KundenverwaltungProxy;
 
 */
 
-import de.webshop.proxy.BenutzerverwaltungProxy;
-import de.webshop.proxy.BestellverwaltungProxy;
+import de.webshop.artikelverwaltung.domain.Artikel;
+import de.webshop.artikelverwaltung.rest.ArtikelList;
+import de.webshop.proxy.ArtikelverwaltungProxy;
+
 import de.webshop.test.util.ArchiveUtil;
 import de.webshop.test.util.DbReload;
 import de.webshop.util.RegisterResteasy;
@@ -52,13 +51,12 @@ import de.webshop.util.RegisterResteasy;
 public class ArtikelverwaltungTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArtikelverwaltungTest.class);
 	
-	private static final Long BESTELLUNG_ID_VORHANDEN = Long.valueOf(11);
-	private static final Long KUNDE_ID_VORHANDEN = Long.valueOf(1);
 	private static final Long ARTIKEL_ID_VORHANDEN_1 = Long.valueOf(500);
 	private static final Long ARTIKEL_ID_VORHANDEN_2 = Long.valueOf(501);
+	private static final String ARTIKEL_BEZ_VORHANDEN = "Strickjacke";
 
-	private static BestellverwaltungProxy bvProxy;
-	private static BenutzerverwaltungProxy kvProxy;
+	private static ArtikelverwaltungProxy avProxy;
+	
 
 	/**
 	 */
@@ -74,10 +72,7 @@ public class ArtikelverwaltungTest {
 		RegisterResteasy.register();
 
 		HttpClient client = new HttpClient();
-		bvProxy = ProxyFactory.create(BestellverwaltungProxy.class, BASE_URL, new ApacheHttpClientExecutor(client));
-
-		client = new HttpClient();
-		kvProxy = ProxyFactory.create(BenutzerverwaltungProxy.class, BASE_URL, new ApacheHttpClientExecutor(client));
+		avProxy = ProxyFactory.create(ArtikelverwaltungProxy.class, BASE_URL, new ApacheHttpClientExecutor(client));		
 		
 		try {
 			DbReload.reload();
@@ -88,5 +83,28 @@ public class ArtikelverwaltungTest {
 		}
 	}
 	
+	@Test
+	public void findArtikelById() {
+		LOGGER.debug("BEGINN findArtikelById");
+		
+		final Artikel artikel = avProxy.findArtikel(ARTIKEL_ID_VORHANDEN_1);
+		assertThat(artikel.getId(), is(ARTIKEL_ID_VORHANDEN_1));
+		
+		LOGGER.debug("ENDE findArtikelById");
+	}
+	
+	@Test
+	public void findArtikelByBezeichnung(){
+		LOGGER.debug("BEGINN findArtikelByBezeichnung");
+		
+		final ArtikelList artikelList = avProxy.findArtikelB(ARTIKEL_BEZ_VORHANDEN);
+		
+		final List<Artikel> artikelListIntern = artikelList.getArtikel();
+		for (Artikel artikel : artikelListIntern){
+			assertThat(artikel.getBezeichnung(), is(ARTIKEL_BEZ_VORHANDEN));
+		}
+		
+		LOGGER.debug("ENDE findArtikelByBezeichnung");
+	}
 
 }
