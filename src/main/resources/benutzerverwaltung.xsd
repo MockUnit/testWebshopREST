@@ -5,6 +5,8 @@
 
   <xs:element name="benutzer" type="tns:abstractBenutzer"/>
 
+  <xs:element name="benutzerList" type="tns:benutzerList"/>
+
   <xs:element name="lieferadresse" type="tns:lieferadresse"/>
 
   <xs:element name="rechnungsadresse" type="tns:rechnungsadresse"/>
@@ -95,6 +97,12 @@
       <xs:element name="rolle" type="tns:rolle" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="benutzerList">
+    <xs:sequence>
+      <xs:element ref="tns:benutzer" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
   </xs:complexType>
 
   <xs:simpleType name="rolleTyp">
