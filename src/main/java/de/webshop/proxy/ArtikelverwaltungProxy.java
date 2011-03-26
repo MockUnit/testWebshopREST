@@ -1,5 +1,9 @@
 package de.webshop.proxy;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
+import static javax.ws.rs.core.MediaType.TEXT_XML;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -11,14 +15,8 @@ import javax.ws.rs.QueryParam;
 
 import org.jboss.resteasy.client.core.BaseClientResponse;
 
-
 import de.webshop.artikelverwaltung.domain.Artikel;
 import de.webshop.artikelverwaltung.rest.ArtikelList;
-
-
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static javax.ws.rs.core.MediaType.APPLICATION_XML;
-import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 @Path("/artikelverwaltung")
 @Produces({APPLICATION_XML, TEXT_XML, APPLICATION_JSON})
