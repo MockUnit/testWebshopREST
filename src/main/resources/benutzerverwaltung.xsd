@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xs:schema version="1.0" targetNamespace="http://webshop.de/benutzerverwaltung" xmlns:tns="http://webshop.de/benutzerverwaltung" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema version="1.0" targetNamespace="http://webshop.de/benutzerverwaltung" xmlns:ns1="http://webshop.de/artikelverwaltung" xmlns:tns="http://webshop.de/benutzerverwaltung" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="http://webshop.de/artikelverwaltung" schemaLocation="artikelverwaltung.xsd"/>
 
   <xs:element name="abstractAdresse" type="tns:abstractAdresse"/>
 
@@ -9,11 +11,15 @@
 
   <xs:element name="lieferadresse" type="tns:lieferadresse"/>
 
+  <xs:element name="produktbewertungList" type="tns:produktbewertungList"/>
+
   <xs:element name="rechnungsadresse" type="tns:rechnungsadresse"/>
 
   <xs:element name="rolle" type="tns:rolle"/>
 
   <xs:element name="rolleHasBenutzer" type="tns:rolleHasBenutzer"/>
+
+  <xs:element name="rolleHasBenutzerList" type="tns:rolleHasBenutzerList"/>
 
   <xs:complexType name="abstractBenutzer">
     <xs:sequence>
@@ -102,6 +108,18 @@
   <xs:complexType name="benutzerList">
     <xs:sequence>
       <xs:element ref="tns:benutzer" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="produktbewertungList">
+    <xs:sequence>
+      <xs:element ref="ns1:produktbewertung" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rolleHasBenutzerList">
+    <xs:sequence>
+      <xs:element ref="tns:rolleHasBenutzer" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
