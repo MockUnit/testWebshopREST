@@ -5,8 +5,9 @@
  <context-param>
   <description>JNDI-Namen fuer RESTEasy: angepasst fuer Arquillian</description>
   <param-name>resteasy.jndi.resources</param-name>
-  <param-value>java:global/test/webshopEJB/KundenverwaltungResourceEJB,
-  	java:global/test/webshopEJB/BestellverwaltungResourceEJB
+  <param-value>java:global/test/webshopEJB/BenutzerverwaltungResourceEJB,
+  	java:global/test/webshopEJB/BestellverwaltungResourceEJB,
+  	java:global/test/webshopEJB/LagerverwaltungResourceEJB,
   	java:global/test/webshopEJB/ArtikelverwaltungResourceEJB</param-value>
  </context-param>
  <context-param>
@@ -17,7 +18,7 @@
     de.webshop.benutzerverwaltung.rest.BenutzerverwaltungExceptionMapper,
     de.webshop.artikelverwaltung.rest.ArtikelValidationExceptionMapper,
     de.webshop.artikelverwaltung.rest.ArtikelverwaltungExceptionMapper,
-    de.webshop.util.NotFoundExceptionMapper</param-value>
+    de.webshop.util.AbstractWebshopExceptionMapper</param-value>
  </context-param>
  <context-param>
   <param-name>resteasy.use.builtin.providers</param-name>

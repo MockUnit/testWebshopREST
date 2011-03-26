@@ -52,7 +52,7 @@
 	<properties>
 		<testklassen>**/*Test.java</testklassen>
 		
-		<dbunit.xml.dir>${basedir}/../webshopDB/postgresql/target/dbunit</dbunit.xml.dir>
+		<dbunit.xml.dir>${basedir}/../webshopDB/target/dbunit</dbunit.xml.dir>
 		<!--
 		<dbunit.xml.dir>${basedir}/../webshopDB/mysql/target/dbunit</dbunit.xml.dir>
 		-->
@@ -445,7 +445,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>generate-jaxb-classes-bestellverwaltung</id>
+						<id>generate-jaxb-classes-bestellungsverwaltung</id>
 						<!-- Default-Phase bei maven-jaxb2-plugin -->
 						<phase>generate-sources</phase>
 						<goals>
@@ -454,13 +454,13 @@
 						
 						<configuration>
 							<schemaIncludes>
-								<include>bestellverwaltung.xsd</include>
+								<include>bestellungsverwaltung.xsd</include>
 							</schemaIncludes>
-							<generatePackage>${gen.package.name}.bestellverwaltung</generatePackage>
+							<generatePackage>${gen.package.name}.bestellungsverwaltung</generatePackage>
 						</configuration>
 					</execution>
 					<execution>
-						<id>generate-jaxb-classes-kundenverwaltung</id>
+						<id>generate-jaxb-classes-benutzerverwaltung</id>
 						<!-- Default-Phase bei maven-jaxb2-plugin -->
 						<phase>generate-sources</phase>
 						<goals>
@@ -469,9 +469,24 @@
 						
 						<configuration>
 							<schemaIncludes>
-								<include>kundenverwaltung.xsd</include>
+								<include>benutzerverwaltung.xsd</include>
 							</schemaIncludes>
-							<generatePackage>${gen.package.name}.kundenverwaltung</generatePackage>
+							<generatePackage>${gen.package.name}.benutzerverwaltung</generatePackage>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-jaxb-classes-lagerverwaltung</id>
+						<!-- Default-Phase bei maven-jaxb2-plugin -->
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						
+						<configuration>
+							<schemaIncludes>
+								<include>lagerverwaltung.xsd</include>
+							</schemaIncludes>
+							<generatePackage>${gen.package.name}.lagerverwaltung</generatePackage>
 						</configuration>
 					</execution>
 				</executions>
