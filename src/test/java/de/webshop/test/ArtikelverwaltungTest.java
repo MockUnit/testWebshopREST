@@ -42,46 +42,20 @@ import de.webshop.artikelverwaltung.domain.Artikel;
 import de.webshop.artikelverwaltung.rest.ArtikelList;
 import de.webshop.proxy.ArtikelverwaltungProxy;
 
+import de.webshop.test.util.AbstractTest;
 import de.webshop.test.util.ArchiveUtil;
 import de.webshop.test.util.DbReload;
 import de.webshop.util.RegisterResteasy;
 
 @RunWith(Arquillian.class)
 @Run(RunModeType.AS_CLIENT)
-public class ArtikelverwaltungTest {
+public class ArtikelverwaltungTest extends AbstractTest{
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArtikelverwaltungTest.class);
 	
 	private static final Long ARTIKEL_ID_VORHANDEN_1 = Long.valueOf(500);
 	private static final Long ARTIKEL_ID_VORHANDEN_2 = Long.valueOf(501);
 	private static final String ARTIKEL_BEZ_VORHANDEN = "Strickjacke";
 
-	private static ArtikelverwaltungProxy avProxy;
-	
-
-	/**
-	 */
-	@Deployment
-	public static EnterpriseArchive createTestArchive() {
-		return ArchiveUtil.getTestArchive();
-	}
-	
-	/**
-	 */
-	@BeforeClass
-	public static void setup() {
-		RegisterResteasy.register();
-
-		HttpClient client = new HttpClient();
-		avProxy = ProxyFactory.create(ArtikelverwaltungProxy.class, BASE_URL, new ApacheHttpClientExecutor(client));		
-		
-		try {
-			DbReload.reload();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			fail("Fehler in DbReload");
-		}
-	}
 	
 	@Test
 	public void findArtikelById() {

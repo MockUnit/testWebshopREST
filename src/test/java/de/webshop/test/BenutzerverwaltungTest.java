@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.webshop.gen.benutzerverwaltung.BenutzerList;
+import de.webshop.benutzerverwaltung.rest.BenutzerList;
 import de.webshop.test.util.AbstractTest;
 
 @RunWith(Arquillian.class)
@@ -27,7 +27,7 @@ public class BenutzerverwaltungTest extends AbstractTest {
 		LOGGER.debug("BEGINN findBenutzerN");
 		
 		BenutzerList list = bnvProxy.findBenutzerN(NACHNAME_EXISTS);
-		assertThat(list.getBenutzer().size(), is(1));
+		assertThat(list.getBenutzerList().size(), is(1));
 		
 		LOGGER.debug("ENDE findBenutzerN");
 	}
