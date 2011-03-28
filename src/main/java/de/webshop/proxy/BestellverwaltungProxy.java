@@ -16,13 +16,11 @@ import javax.ws.rs.Produces;
 
 import org.jboss.resteasy.client.core.BaseClientResponse;
 
+import de.webshop.gen.bestellungsverwaltung.Bestellstatus;
+import de.webshop.gen.bestellungsverwaltung.Bestellung;
+import de.webshop.gen.bestellungsverwaltung.BestellungList;
 
-import de.webshop.bestellungsverwaltung.domain.Bestellung;
-import de.webshop.bestellungsverwaltung.domain.Bestellung.Bestellstatus;
-import de.webshop.bestellungsverwaltung.rest.BestellungList;
-
-
-@Path("/bestellverwaltung")
+@Path("/bestellungsverwaltung")
 @Produces({APPLICATION_XML, TEXT_XML, APPLICATION_JSON})
 @Consumes
 public interface BestellverwaltungProxy {
