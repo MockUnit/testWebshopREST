@@ -17,7 +17,7 @@ import de.webshop.proxy.BenutzerverwaltungProxy;
 import de.webshop.util.RegisterResteasy;
 
 public abstract class AbstractTest {
-	//protected static BestellverwaltungProxy bvProxy;
+	protected static BestellverwaltungProxy bvProxy;
 	protected static BenutzerverwaltungProxy bnvProxy;
 	//protected static ArtikelverwaltungProxy avProxy;
 	
@@ -36,7 +36,7 @@ public abstract class AbstractTest {
 		RegisterResteasy.register();
 	
 		HttpClient client = new HttpClient();
-		//bvProxy = ProxyFactory.create(BestellverwaltungProxy.class, BASE_URL, new ApacheHttpClientExecutor(client));
+		bvProxy = ProxyFactory.create(BestellverwaltungProxy.class, BASE_URL, new ApacheHttpClientExecutor(client));
 	
 		client = new HttpClient();
 		bnvProxy = ProxyFactory.create(BenutzerverwaltungProxy.class, BASE_URL, new ApacheHttpClientExecutor(client));
