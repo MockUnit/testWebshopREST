@@ -28,7 +28,7 @@ public class BestellungsverwaltungTest extends AbstractTest {
 
 	private static final Long BENUTZER_ID_VORHANDEN = Long.valueOf(1);
 	private static final Long LAGER_ID_VORHANDEN1 = Long.valueOf(1);
-	private static final Long BESTELLUNG_ID_VORHANDEN = Long.valueOf(3);
+	private static final Long BESTELLUNG_ID_VORHANDEN = Long.valueOf(2);
 	
 	
 	@Test
@@ -36,7 +36,7 @@ public class BestellungsverwaltungTest extends AbstractTest {
 	{
 		final Long bestellungId = BESTELLUNG_ID_VORHANDEN;
 		final Bestellung bestellung = bvProxy.findBestellung(bestellungId);
-		assertThat(bestellung.getId(), is(bestellungId.longValue()));
+		assertThat(bestellung.getId(), is(bestellungId));
 	}
 	
 	@Ignore

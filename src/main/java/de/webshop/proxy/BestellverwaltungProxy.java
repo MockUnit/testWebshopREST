@@ -20,7 +20,7 @@ import de.webshop.gen.bestellungsverwaltung.Bestellstatus;
 import de.webshop.gen.bestellungsverwaltung.Bestellung;
 import de.webshop.gen.bestellungsverwaltung.BestellungList;
 
-@Path("/bestellungsverwaltung")
+@Path("/bestellverwaltung")
 @Produces({APPLICATION_XML, TEXT_XML, APPLICATION_JSON})
 @Consumes
 public interface BestellverwaltungProxy {

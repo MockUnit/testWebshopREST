@@ -42,9 +42,9 @@ import de.webshop.test.util.AbstractTest;
 public class ArtikelverwaltungTest extends AbstractTest{
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArtikelverwaltungTest.class);
 	
-	private static final Long ARTIKEL_ID_VORHANDEN_1 = Long.valueOf(500);
+	private static final Long ARTIKEL_ID_VORHANDEN_1 = Long.valueOf(2);
 
-	private static final String ARTIKEL_BEZ_VORHANDEN = "Strickjacke";
+	private static final String ARTIKEL_BEZ_VORHANDEN = "hose";
 
 	
 	@Test
