@@ -3,6 +3,8 @@
 
   <xs:element name="artikel" type="tns:artikel"/>
 
+  <xs:element name="artikelList" type="tns:artikelList"/>
+
   <xs:element name="kategorie" type="tns:kategorie"/>
 
   <xs:element name="kategorieHasArtikel" type="tns:kategorieHasArtikel"/>
@@ -71,6 +73,12 @@
     </xs:sequence>
     <xs:attribute name="id" type="xs:long" use="required"/>
     <xs:attribute name="bewertung" type="xs:int" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="artikelList">
+    <xs:sequence>
+      <xs:element ref="tns:artikel" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
   </xs:complexType>
 </xs:schema>
 

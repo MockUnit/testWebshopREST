@@ -15,7 +15,7 @@ import javax.ws.rs.QueryParam;
 
 import org.jboss.resteasy.client.core.BaseClientResponse;
 
-import de.webshop.artikelverwaltung.domain.Artikel;
+import de.webshop.gen.artikelverwaltung.Artikel;
 import de.webshop.gen.artikelverwaltung.ArtikelList;
 
 @Path("/artikelverwaltung")
